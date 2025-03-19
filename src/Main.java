@@ -1,8 +1,15 @@
+import entity.Product;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        Map<Integer, Product> produtos = new HashMap<>();
+
         int opcao;
 
         do {
@@ -12,17 +19,34 @@ public class Main {
             System.out.println("3 - Sair");
             System.out.print("Escolha uma opção: ");
             opcao = scanner.nextInt();
-            scanner.nextLine(); // Consumir quebra de linha
+            scanner.nextLine();
 
             switch (opcao) {
                 case 1:
-                    System.out.println("Opção de cadastro selecionada.");
-                    // Aqui o aluno deve implementar a lógica de cadastro
+                    System.out.print("Digite o código do produto: ");
+                    int codigo = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.print("Digite o nome do produto: ");
+                    String nome = scanner.nextLine();
+                    System.out.print("Digite o preço do produto: ");
+                    double preco = scanner.nextDouble();
+                    scanner.nextLine();
+
+                    produtos.put(codigo, new Product(codigo, nome, preco));
+                    System.out.println("Produto cadastrado com sucesso!");
                     break;
 
                 case 2:
-                    System.out.println("Opção de busca selecionada.");
-                    // Aqui o aluno deve implementar a lógica de busca
+                    System.out.print("Digite o código do produto: ");
+                    int buscaCodigo = scanner.nextInt();
+                    scanner.nextLine();
+
+                    Product produto = produtos.get(buscaCodigo);
+                    if (produto != null) {
+                        System.out.println("Produto encontrado: " + produto);
+                    } else {
+                        System.out.println("Produto não encontrado.");
+                    }
                     break;
 
                 case 3:
